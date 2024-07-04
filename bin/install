@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+version="$ASDF_INSTALL_VERSION"
+install_path="$ASDF_INSTALL_PATH"
+tmp_dir="$(mktemp -d asdf-c3.XXX)"
+
+platform=""
+case "$(uname -o)" in
+  "Darwin") platform="macos" ;;
+  "Linux") platform="linux" ;;  
+esac
+
+echo -e "\033[32minfo\033[0m downloading C3 version $version"
+curl -sL "https://github.com/c3lang/c3c/releases/download/$version/c3-$platform.zip" -o "$tmp_dir/c3-$version.zip"
+
+echo -e "\033[32minfo\033[0m extracting the C3 compiler archive"
+unzip "$tmp_dir/c3-$version.zip" -d "$tmp_dir"
+
+echo -e "\033[32minfo\033[0m cleaning unneeded files from worktree"
+mv "$tmp_dir"/"$platform"/* "$install_path"
+rm -rf "$tmp_dir"

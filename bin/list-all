@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+curl -sL https://api.github.com/repos/c3lang/c3c/releases | jq -r '.[].tag_name' | tail -r | tr '\n' ' '
