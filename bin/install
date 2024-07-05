@@ -14,7 +14,7 @@ echo -e "\033[32minfo\033[0m downloading C3 version $version"
 curl -sL "https://github.com/c3lang/c3c/releases/download/$version/c3-$platform.zip" -o "$tmp_dir/c3-$version.zip"
 
 echo -e "\033[32minfo\033[0m extracting the C3 compiler archive"
-unzip "$tmp_dir/c3-$version.zip" -d "$tmp_dir"
+unzip "$tmp_dir/c3-$version.zip" -d "$tmp_dir" &> /dev/null
 
 echo -e "\033[32minfo\033[0m cleaning unneeded files from worktree"
 mv "$tmp_dir"/"$platform"/* "$install_path"
